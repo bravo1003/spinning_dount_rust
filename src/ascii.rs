@@ -3,7 +3,7 @@ use std::time::Duration;
 // ASCII consts
 pub const ELEMENTS: [char; 12] = ['.', ',', '-', '~', ':', ';', '=', '!', '*', '#', '$', '@'];
 
-pub fn present_ascii() {
+pub fn run_ascii() {
     let mut sin_a: i32 = 1024;
     let mut cos_a: i32 = 0;
     let mut sin_b: i32 = 1024;

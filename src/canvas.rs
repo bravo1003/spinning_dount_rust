@@ -20,9 +20,9 @@ pub const R2: f64 = 2.0;
 pub const K1: f64 = SCREEN_WDITH * K2 * 1.0 / (4.0 * (R1 + R2));
 pub const K2: f64 = 5.0;
 
-pub fn present_canvas() -> Result<(), String> {
+pub fn run_canvas() -> Result<(), String> {
     let sdl_context = sdl2::init()?;
-    let mut canvas = sdl_init(&sdl_context)?;
+    let mut canvas = init_canvas(&sdl_context)?;
     let mut event_pump = sdl_context.event_pump()?;
 
     let mut a = 1.0;
@@ -47,7 +47,7 @@ pub fn present_canvas() -> Result<(), String> {
     Ok(())
 }
 
-fn sdl_init(sdl_context: &Sdl) -> Result<Canvas<Window>, String> {
+fn init_canvas(sdl_context: &Sdl) -> Result<Canvas<Window>, String> {
     let video_subsystem = sdl_context.video()?;
 
     let window = video_subsystem
@@ -60,7 +60,7 @@ fn sdl_init(sdl_context: &Sdl) -> Result<Canvas<Window>, String> {
         .build()
         .map_err(|e| e.to_string())?;
 
-    let canvas = match window.into_canvas().build() {
+    let canvas = match window.into_canvas().present_vsync().build() {
         Ok(canvas) => canvas,
         Err(e) => return Err(e.to_string()),
     };

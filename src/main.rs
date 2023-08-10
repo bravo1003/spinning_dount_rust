@@ -1,4 +1,4 @@
-use crate::{ascii::present_ascii, canvas::present_canvas};
+use crate::{ascii::run_ascii, canvas::run_canvas};
 use std::io;
 
 mod ascii;
@@ -38,8 +38,8 @@ pub fn main() -> Result<(), String> {
     }
 
     match choice {
-        1 => present_ascii(),
-        2 => present_canvas()?,
+        1 => run_ascii(),
+        2 => run_canvas()?,
         _ => (),
     }
 
